@@ -20,7 +20,6 @@ import MetricCard from '@/components/MetricCard'
 import SalesChart from '@/components/SalesChart'
 import CustomerSegmentChart from '@/components/CustomerSegmentChart'
 import ProductTable from '@/components/ProductTable'
-import RecentCustomers from '@/components/RecentCustomers'
 import { generateMockData, DashboardStats } from '@/lib/mockData'
 
 export default function Dashboard() {
@@ -179,24 +178,14 @@ export default function Dashboard() {
               </motion.div>
             </div>
 
-            {/* Tables Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <ProductTable products={data.topProducts} />
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <RecentCustomers customers={data.recentCustomers} />
-              </motion.div>
-            </div>
+            {/* Products Table */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <ProductTable products={data.topProducts} />
+            </motion.div>
           </div>
         </main>
       </div>
