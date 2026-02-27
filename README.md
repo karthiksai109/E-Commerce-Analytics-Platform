@@ -1,211 +1,78 @@
 # E-Commerce Analytics Platform
 
-A sophisticated, real-time analytics dashboard built with **Next.js 14**, **TypeScript**, and **Recharts**. Designed to help e-commerce businesses track sales performance, customer behavior, and inventory management with stunning visualizations and a professional interface.
+Analytics dashboard for tracking sales, customers, and inventory. Built with Next.js 14, TypeScript, and Recharts. Data refreshes every 30 seconds to simulate real-time updates.
 
-## ✨ Features
+I wanted to build something that shows I can work with data visualization and typed frontend code, not just CRUD apps.
 
-### 📊 **Analytics Dashboard**
-- **Real-time Metrics** - Live tracking of revenue, orders, customers, and conversion rates
-- **Interactive Charts** - Beautiful sales trends and customer segment visualizations
-- **Responsive Design** - Fully optimized for desktop, tablet, and mobile devices
-- **Glass Morphism UI** - Modern, professional design with smooth animations
+## architecture
 
-### 📈 **Sales Analytics**
-- Monthly sales performance tracking
-- Revenue vs Sales comparison charts
-- Trend indicators with percentage changes
-- Real-time data updates every 30 seconds
+```mermaid
+graph TD
+    A[Browser] --> B[Next.js App Router]
+    B --> C[Dashboard Page]
+    
+    C --> D[MetricCard components]
+    C --> E[SalesChart - Recharts area chart]
+    C --> F[CustomerSegmentChart - Recharts pie]
+    C --> G[ProductTable - sortable table]
+    C --> H[RecentCustomers - activity feed]
+    
+    D --> I[mockData.ts - data generator]
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    
+    I -->|refreshes every 30s| D
+    
+    subgraph UI Layer
+        D
+        E
+        F
+        G
+        H
+    end
+    
+    subgraph Data Layer
+        I
+    end
+```
 
-### 👥 **Customer Insights**
-- Customer segmentation analysis (Premium, Regular, New)
-- Recent customer activity tracking
-- Purchase behavior analytics
-- Customer lifetime value metrics
+## what it tracks
 
-### 📦 **Inventory Management**
-- Top performing products table
-- Stock level monitoring with status indicators
-- Revenue tracking per product
-- Low stock alerts and management
+Sales: monthly revenue trends, order volume, conversion rates with percentage change indicators
+Customers: segmentation by type (premium, regular, new), recent activity, purchase behavior
+Inventory: top products by revenue, stock levels with status indicators, low stock alerts
 
-### 🎨 **Professional UI/UX**
-- Glass morphism design with backdrop blur effects
-- Smooth animations and micro-interactions
-- Color-coded metrics and status indicators
-- Mobile-responsive sidebar navigation
-- Loading states and error handling
+## stack
 
-## 🛠 Tech Stack
+Next.js 14, TypeScript, Tailwind CSS, Recharts, Framer Motion, Lucide React, date-fns
 
-| Layer       | Technology                        | Version |
-|-------------|-----------------------------------|---------|
-| Framework   | Next.js                           | 14.x    |
-| Language    | TypeScript                        | 5.x     |
-| Styling     | Tailwind CSS                      | 3.x     |
-| Charts      | Recharts                          | 2.x     |
-| Animations  | Framer Motion                     | 12.x    |
-| Icons       | Lucide React                      | 0.x     |
-| Date Utils  | date-fns                          | 4.x     |
+## structure
 
-## 🚀 Getting Started
+```
+src/
+  app/
+    page.tsx              - main dashboard layout
+    globals.css           - styles
+    layout.tsx            - root layout
+  components/
+    MetricCard.tsx        - KPI cards with trend arrows
+    SalesChart.tsx        - area chart for monthly sales
+    CustomerSegmentChart.tsx - pie chart for segments
+    ProductTable.tsx      - products with stock status
+    RecentCustomers.tsx   - latest customer activity
+  lib/
+    mockData.ts           - generates realistic data
+  types/
+    analytics.ts          - TypeScript interfaces
+```
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+## run it
 
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/karthiksai109/E-Commerce-Analytics-Platform.git
-cd E-Commerce-Analytics-Platform
-
-# Install dependencies
+```
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
-
-## 📁 Project Structure
-
-```
-E-Commerce-Analytics-Platform/
-├── src/
-│   ├── app/
-│   │   ├── globals.css          # Global styles and glass morphism
-│   │   ├── layout.tsx           # Root layout component
-│   │   └── page.tsx             # Main dashboard page
-│   ├── components/
-│   │   ├── MetricCard.tsx       # KPI metric cards
-│   │   ├── SalesChart.tsx       # Sales performance chart
-│   │   ├── CustomerSegmentChart.tsx # Customer segmentation pie chart
-│   │   ├── ProductTable.tsx     # Products inventory table
-│   │   └── RecentCustomers.tsx  # Recent customers list
-│   ├── lib/
-│   │   └── mockData.ts          # Mock data generator
-│   ├── types/
-│   │   └── analytics.ts         # TypeScript type definitions
-│   └── hooks/                   # Custom React hooks
-├── public/                      # Static assets
-├── tailwind.config.js           # Tailwind configuration
-├── next.config.js               # Next.js configuration
-└── package.json                 # Dependencies and scripts
-```
-
-## 🎯 Key Components
-
-### MetricCard
-Displays KPI metrics with trend indicators and progress bars:
-- Revenue, Orders, Customers, Conversion Rate tracking
-- Animated trend arrows (up/down/neutral)
-- Hover effects and micro-interactions
-
-### SalesChart
-Interactive area chart showing:
-- Monthly sales trends
-- Revenue comparison
-- Gradient fills and smooth animations
-- Responsive tooltips
-
-### CustomerSegmentChart
-Pie chart visualization for:
-- Customer distribution (Premium/Regular/New)
-- Interactive labels and legends
-- Color-coded segments
-
-### ProductTable
-Advanced data table featuring:
-- Product performance metrics
-- Stock status indicators
-- Revenue tracking
-- Sortable columns
-
-## 🔧 Configuration
-
-### Tailwind CSS
-Custom theme with:
-- Extended color palette (primary, secondary)
-- Custom animations (fade-in, slide-up)
-- Glass morphism utilities
-
-### Next.js
-Optimized configuration:
-- App Router enabled
-- Image optimization
-- TypeScript support
-
-## 📊 Mock Data
-
-The application uses realistic mock data that:
-- Updates every 30 seconds to simulate real-time data
-- Includes varied customer segments and product categories
-- Generates random but plausible metrics
-
-## 🎨 Design System
-
-### Colors
-- **Primary Blue**: #3b82f6 - #1e40af gradient
-- **Success Green**: #10b981
-- **Warning Yellow**: #f59e0b
-- **Danger Red**: #ef4444
-
-### Animations
-- **Fade In**: Smooth opacity transitions
-- **Slide Up**: Vertical entrance animations
-- **Scale**: Hover effects on interactive elements
-- **Pulse**: Live indicator animations
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Push code to GitHub
-2. Connect repository to Vercel
-3. Deploy automatically
-
-### Other Platforms
-```bash
-# Build for production
-npm run build
-
-# The .next folder contains the optimized build
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - React framework
-- [Recharts](https://recharts.org/) - Chart library
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [Lucide](https://lucide.dev/) - Icon library
-
-## 📞 Contact
-
-- **Portfolio**: [karthikramadugu.vercel.app](https://karthikramadugu.vercel.app/)
-- **Email**: karthiksaidham2001@gmail.com
-- **LinkedIn**: [linkedin.com/in/ramadugukarthik](https://www.linkedin.com/in/ramadugukarthik/)
-- **GitHub**: [github.com/karthiksai109](https://github.com/karthiksai109)
-
----
-
-⭐ **Star this repository if it helped you!**
+Opens at localhost:3000. No API keys needed, runs on generated data.
